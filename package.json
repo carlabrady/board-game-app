@@ -1,0 +1,34 @@
+{
+  "name": "board-game-app",
+  "version": "1.0.0",
+  "description": "One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlabrady/board-game-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlabrady/board-game-app/issues"
+  },
+  "homepage": "https://github.com/carlabrady/board-game-app#readme",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-material": "^1.1.5",
+    "angular-route": "^1.6.6",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pg": "^7.3.0"
+  }
+}
