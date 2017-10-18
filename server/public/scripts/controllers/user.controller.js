@@ -7,11 +7,9 @@ myApp.controller('UserController', function(UserService) {
 
     vm.getGame = function (search) {
       UserService.getGame(search).then( function () {
-        // vm.games = UserService.games.data;
+        vm.games = UserService.userObject.games;
         console.log('game return in controller', UserService.userObject.games );
-        console.log('vm.game:', vm.game);
+        console.log('vm.games:', vm.games);
       })
-        
-      
     };           
 });

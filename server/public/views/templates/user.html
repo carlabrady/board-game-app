@@ -5,7 +5,7 @@
     <section>
         <input type='text' placeholder="game search" ng-model="uc.gameIn">
         <button ng-click="uc.getGame(uc.gameIn)">Search</button>
-        <div ng-repeat="info in uc.game.elements[0].elements">
+        <div ng-repeat="info in uc.games.elements[0].elements">
                 <h1>{{ info.elements[7].elements[0].text }}</h1>
                 <image src="{{info.elements[10].elements[0].text}}"></image>
                 <p>Min Player: {{ info.elements[1].elements[0].text }}</p>
