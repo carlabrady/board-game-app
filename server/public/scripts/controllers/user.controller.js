@@ -4,8 +4,10 @@ myApp.controller('UserController', function(UserService) {
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
 
-    vm.getGame = UserService.getGame(vm.gameIn);
-    vm.games = UserService.games.data;     
-    console.log('vm.game:', vm.game);           
+    vm.getGame = function (search) {
+      UserService.getGame(search);
+      vm.games = UserService.games.data;     
+      console.log('vm.game:', vm.game);
+    };           
     
 });
