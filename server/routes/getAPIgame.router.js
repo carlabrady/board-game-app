@@ -4,8 +4,8 @@ var router = express.Router();
 var request = require('request');
 var convert = require('xml-js');
 
-router.get('/bbg/:searchParam', function(req, res) {
-    console.log('in the bbg route', req.params.searchParam);
+router.get('/:searchParam', function(req, res) {
+    console.log('in the bgg route', req.params.searchParam);
 
     var base = 'https://www.boardgamegeek.com/xmlapi';
     var search = '/search?search=';
@@ -24,8 +24,8 @@ router.get('/bbg/:searchParam', function(req, res) {
     };
 
     request(search_options, function(error, response, body) {
-        console.log('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        // console.log('error:', error); // Print the error if one occurred
+        // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         // console.log('body:', body); // Print the HTML for the Google homepage.
         // Changes XML to JSON
         let xml = body;

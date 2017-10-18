@@ -1,12 +1,11 @@
 myApp.factory('UserService', function($http, $location){
     console.log('UserService Loaded');
    
-    
     var userObject = {};
-
+    userObject.games = {};
     return {
       userObject: userObject,
-      getGame: self.games,
+      // getGame: self.games,
   
       getuser: function () {
         console.log('UserService -- getuser');
@@ -36,13 +35,14 @@ myApp.factory('UserService', function($http, $location){
 
       getGame: function(gameIn) {
         console.log('search parameters', gameIn);
-        $http({
+        return $http({
             method: 'GET',
-            url: '/bbg/' + gameIn,
+            url: '/bgg/' + gameIn,
         }).then( function( response ){
             console.log( 'back from server call with:', response );
-            games=response.data;     
-            console.log('games:', games);           
+            // games=response.data;  
+            userObject.games = response.data;
+            console.log('games:', userObject.games);           
         }); //end $http
       } // end getgame
     };
