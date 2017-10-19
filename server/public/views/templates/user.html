@@ -1,16 +1,27 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
+<div class="container" ng-cloak>
 
-    <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+<h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
     <section>
         <input type='text' placeholder="game search" ng-model="uc.gameIn">
         <button ng-click="uc.getGame(uc.gameIn)">Search</button>
-        <div ng-repeat="info in uc.games">
-                <h1>{{ info.names }}</h1>
-                <p>Rating: {{info.avg_rating}}</p>
-                <image src="{{info.image_url}}"></image>
-                <p>Min Player: {{ info.min_players }}</p>
-                <p>Max Players: {{ info.max_players }}</p>
-        </div>
+        <md-content class="md-padding">
+            <div layout="row" layout-wrap>
+                    <md-card flex-xs flex="30" ng-repeat="info in uc.games" class="gameCard">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{ info.names }}</span>
+                                <span class="md-subhead">Rating: {{info.avg_rating}}/10</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <img ng-src="{{info.image_url}}" class="md-card-image" layout-align="top" alt="Washed Out">
+                        <md-card-content layout="row" layout-align="space-between">
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button>Action 1</md-button>
+                            </md-card-actions>
+                        </md-card-content>
+                    </md-card>
+            </div>
+        </md-content>
     </section>
 </div>
