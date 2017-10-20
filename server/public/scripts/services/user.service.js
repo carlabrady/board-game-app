@@ -57,6 +57,19 @@ myApp.factory('UserService', function($http, $location){
             userObject.games = response.data;
             console.log('games:', userObject.games);           
         }); //end $http
+      }, // end getgame
+
+      userGames: function(id) {
+        console.log('user collection call with id:', id);
+        return $http({
+            method: 'GET',
+            url: '/userGames/' + id,
+        }).then( function( response ){
+            console.log( 'back from server call with:', response );
+            // games=response.data;  
+            userObject.games = response.data;
+            console.log('games:', userObject.games);           
+        }); //end $http
       } // end getgame
     };
   });
