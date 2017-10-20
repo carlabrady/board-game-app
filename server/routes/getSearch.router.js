@@ -7,7 +7,7 @@ var convert = require('xml-js');
 
 router.get('/:searchParam', function(req, res) {
     console.log('in the bgg route', req.params.searchParam);
-    let searchParam = '%' + req.params.searchParam + '%';
+    let searchParam = req.params.searchParam;
 
     pool.connect( function(err, client, done) {
         if (err) {
@@ -16,7 +16,7 @@ router.get('/:searchParam', function(req, res) {
             res.sendStatus(500);
         }//END if err
         else{
-            client.query("SELECT * FROM games WHERE names LIKE $1", [searchParam], function (quErr, resObj){
+            client.query("SELECT * FROM games WHERE LOWER(names) LIKE LOWER($1)", ['%' + searchParam + '%'], function (quErr, resObj){
                 done();
                 if(quErr){
                     console.log('query error', quErr);
