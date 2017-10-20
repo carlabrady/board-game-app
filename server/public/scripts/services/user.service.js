@@ -37,7 +37,20 @@ myApp.factory('UserService', function($http, $location){
         console.log('search parameters', gameIn);
         return $http({
             method: 'GET',
-            url: '/bgg/' + gameIn,
+            url: '/titleSearch/' + gameIn,
+        }).then( function( response ){
+            console.log( 'back from server call with:', response );
+            // games=response.data;  
+            userObject.games = response.data;
+            console.log('games:', userObject.games);           
+        }); //end $http
+      }, // end getgame
+
+      countSearch: function(countIn) {
+        console.log('search parameters', countIn);
+        return $http({
+            method: 'GET',
+            url: '/countSearch/' + countIn,
         }).then( function( response ){
             console.log( 'back from server call with:', response );
             // games=response.data;  

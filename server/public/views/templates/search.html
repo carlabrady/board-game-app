@@ -1,0 +1,69 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+
+<h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+    <div ng-cloak>
+        <md-content>
+        <md-card>
+          <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Title">
+              <md-content class="md-padding">
+                <h1 class="md-display-2">Search by Title</h1>
+                <input type='text' placeholder="game search" ng-model="uc.gameIn">
+                <button ng-click="uc.getGame(uc.gameIn)">Search</a></button>
+              </md-content>
+            </md-tab>
+            <md-tab label="#Players">
+              <md-content class="md-padding">
+                <h1 class="md-display-2">Select Number of Players</h1>
+                    <div layout="row">
+                        <md-input-container style="margin-right: 10px;">
+                          <label>Players</label>
+                          <md-select ng-model="uc.playerCount">
+                            <md-option ng-repeat="number in uc.players" value="{{number}}">{{number}}</md-option>
+                          </md-select>
+                        </md-input-container>
+                    </div>
+                <button ng-click="uc.contestants(uc.playerCount)">Search</button>
+              </md-content>
+            </md-tab>
+            <md-tab label="Genre">
+              <md-content class="md-padding">
+                <h1 class="md-display-2">Genre</h1>
+                <!-- add functionality to search by genre -->
+              </md-content>
+            </md-tab>
+          </md-tabs>
+        </md-card>
+    </md-content>
+    </div>
+    <section>
+        <md-content class="md-padding">
+            <div layout="row" layout-wrap>
+                <md-card flex-xs flex="30" ng-repeat="info in uc.games" class="gameCard">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{ info.names }}</span>
+                            <span class="md-subhead">Rating: {{info.avg_rating}}/10</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <img ng-src="{{info.image_url}}" class="md-card-image" layout-align="top" alt="Washed Out">
+                    <md-card-content layout="column" layout-align="left">
+                        <p>Number of Players: {{info.min_players}} - {{info.max_players}}</p>
+                        <p>Category: {{info.category}}</p>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <div flex-gt-sm="50">
+                            <md-checkbox ng-model="usersGame" aria-label="Checkbox 1">
+                                In My Collection
+                            </md-checkbox>
+                            <md-checkbox ng-model="usersGame" aria-label="Checkbox 1">
+                                Add to Wishlist
+                            </md-checkbox>
+                        </div>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>
+    </section>
+</div>

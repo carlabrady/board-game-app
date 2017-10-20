@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
 var getSearch = require('./routes/getSearch.router')
+var countSearch = require('./routes/countSearch.router')
 
 var port = process.env.PORT || 5000;
 
@@ -30,7 +31,8 @@ app.use(passport.session());
 // Routes
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
-app.use('/bgg', getSearch);
+app.use('/titleSearch', getSearch);
+app.use('/countSearch', countSearch);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);
