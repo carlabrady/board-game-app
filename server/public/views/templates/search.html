@@ -82,12 +82,12 @@
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
                         <div flex-gt-sm="50">
-                            <md-checkbox ng-model="usersGame" aria-label="Checkbox 1">
+                            <md-checkbox ng-model="info.id" ng-checked={{info.owned}} aria-label="Checkbox 1">
                                 In My Collection
                             </md-checkbox>
-                            <!-- <md-checkbox ng-model="usersGame" aria-label="Checkbox 1">
+                            <md-checkbox ng-model="info.rank" ng-checked={{info.wants}} aria-label="Checkbox 2">
                                 Add to Wishlist
-                            </md-checkbox> -->
+                            </md-checkbox>
                         </div>
                     </md-card-actions>
                 </md-card>

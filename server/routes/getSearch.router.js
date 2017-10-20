@@ -16,7 +16,7 @@ router.get('/:searchParam', function(req, res) {
             res.sendStatus(500);
         }//END if err
         else{
-            client.query("SELECT * FROM games WHERE LOWER(names) LIKE LOWER($1)", ['%' + searchParam + '%'], function (quErr, resObj){
+            client.query("SELECT * FROM games FULL OUTER JOIN users_games ON games.id=users_games.games_id WHERE LOWER(games.names) LIKE LOWER($1)", ['%' + searchParam + '%'], function (quErr, resObj){
                 done();
                 if(quErr){
                     console.log('query error', quErr);
