@@ -43,7 +43,7 @@ myApp.factory('UserService', function($http, $location){
                 console.log( 'back from server call with:', response );
                 // games=response.data;  
                 userObject.games = response.data;
-                console.log('games:', userObject.games);           
+                console.log('get games return:', userObject.games);           
             }); //end $http
         }, // end getgame
 
@@ -56,7 +56,7 @@ myApp.factory('UserService', function($http, $location){
                 console.log( 'back from server call with:', response );
                 // games=response.data;  
                 userObject.games = response.data;
-                console.log('games:', userObject.games);           
+                console.log('count games return:', userObject.games);           
             }); //end $http
         }, // end getgame
 
@@ -69,7 +69,7 @@ myApp.factory('UserService', function($http, $location){
                 console.log( 'back from server call with:', response );
                 // games=response.data;  
                 userObject.games = response.data;
-                console.log('games:', userObject.games);           
+                console.log('user games return:', userObject.games);           
             }); //end $http
         }, // end getgame
 

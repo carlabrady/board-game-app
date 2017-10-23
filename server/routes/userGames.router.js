@@ -31,54 +31,41 @@ router.get('/:searchParam', function(req, res) {
 
 router.post('/', function(req, res) {
     console.log('in the userGames route', req.body);
-    let userId = req.body.users_id;    
-    let gameId = req.body.games_id;
-
+    var userId = req.body.users_id;    
+    var gameId = req.body.id;
+    var userGameId = req.body.games_id;
+    console.log('posr game route with games_id:', userGameId);
+    console.log('post game route with id:', gameId);
+    
     pool.connect( function(err, client, done) {
         if (err) {
             console.log('Pool Connection Error');
             done();
             res.sendStatus(500);
-        } else {
-            let queryString = 'SELECT * FROM users_games WHERE games_id=$1;';
-            let values = [gameId];
-            client.query(queryString, values, function (error, result) {
+        } else if (userGameId) {
+            console.log('Already in db');
+            var delQuery = "DELETE FROM users_games WHERE games_id=$1";
+            client.query(delQuery, [userGameId], function (quErr, resObj){
                 done();
-                if (error) {
-                    console.log('Error:', error);
-                    res.sendStatus(500);
-                } else if (result.rowCount !== 0) {
-                    console.log('Already in db');
-                    console.log('DB games_id #:', result.rows[0].games_id);
-                    let gameId = result.rows[0].games_id;
-                    let delQuery = "DELETE FROM users_games WHERE games_id=$1";
-                    client.query(delQuery, [gameId], function (quErr, resObj){
-                        done();
-                        if(quErr){
-                            console.log('query error', quErr);
-                            res.sendStatus(500); 
-                        }//END if quErr
-                        else{
-                            res.sendStatus(200);
-                        }//END else
-                    });//END client.query
+                if (quErr) {
+                    console.log('query error', quErr);
+                    res.sendStatus(500); 
                 } else {
-                    console.log('Not already in db');
-                    let query = "INSERT INTO users_games (users_id, games_id, owned, wants) VALUES ( $1, $2, true, false);";
-                    client.query(query, [userId, gameId], function (quErr, resObj){
-                        done();
-                        if(quErr){
-                            console.log('query error', quErr);
-                            res.sendStatus(500); 
-                        }//END if quErr
-                        else{
-                            res.sendStatus(200);
-                        }//END else
-                    });//END client.query
-                }
-
-            })
-            
+                    res.sendStatus(200);
+                }//END else
+            });//END client.query
+        } else {
+            console.log('Not already in db');
+            let query = "INSERT INTO users_games (users_id, games_id, owned, wants) VALUES ( $1, $2, true, false);";
+            client.query(query, [userId, gameId], function (quErr, resObj){
+                done();
+                if (quErr) {
+                    console.log('query error', quErr);
+                    res.sendStatus(500); 
+                } else {
+                    res.sendStatus(200);
+                }//END else
+            });//END client.query
         }//END else no err
     })//END pool connect
 });
