@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
-<h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+<h1 id="welcome" class="lead">Welcome, {{vm.userObject.userName}}!</h1>
     <div ng-cloak>
         <md-content>
         <md-card>
@@ -9,8 +9,8 @@
             <md-tab label="Title">
               <md-content class="md-padding">
                 <h1 class="md-display-2">Search by Title</h1>
-                <input type='text' placeholder="game search" ng-model="uc.gameIn">
-                <button ng-click="uc.getGame(uc.gameIn)">Search</a></button>
+                <input type='text' placeholder="game search" ng-model="vm.gameIn">
+                <button ng-click="vm.getGame(vm.gameIn)">Search</a></button>
               </md-content>
             </md-tab>
             <md-tab label="#Players">
@@ -19,12 +19,12 @@
                     <div layout="row">
                         <md-input-container style="margin-right: 10px;">
                           <label>Players</label>
-                          <md-select ng-model="uc.playerCount">
-                            <md-option ng-repeat="number in uc.players" value="{{number}}">{{number}}</md-option>
+                          <md-select ng-model="vm.playerCount">
+                            <md-option ng-repeat="number in vm.players" value="{{number}}">{{number}}</md-option>
                           </md-select>
                         </md-input-container>
                     </div>
-                <button ng-click="uc.contestants(uc.playerCount)">Search</button>
+                <button ng-click="vm.palyerSearch(vm.playerCount)">Search</button>
               </md-content>
             </md-tab>
             <md-tab label="Genre">
@@ -68,7 +68,7 @@
     <section>
         <md-content class="md-padding">
             <div layout="row" layout-wrap>
-                <md-card flex-xs flex="30" ng-repeat="info in uc.games" class="gameCard">
+                <md-card flex-xs flex="30" ng-repeat="info in vm.shownItems" class="gameCard">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{ info.names }}</span>
@@ -94,4 +94,8 @@
             </div>
         </md-content>
     </section>
+    <!-- <md-list>
+        <md-list-item ng-repeat="item in vm.shownItems">{{ item }}</md-list-item>
+    </md-list> -->
+    <md-collection-pagination collection="vm.games" paginated-collection="vm.shownItems" per-page="9"></md-collection-pagination>
 </div>

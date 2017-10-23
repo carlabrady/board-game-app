@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'mdCollectionPagination']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -15,7 +15,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/search', {
       templateUrl: '/views/templates/search.html',
-      controller: 'UserController as uc',
+      controller: 'UserController as vm',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
