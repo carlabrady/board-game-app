@@ -6,7 +6,7 @@ var request = require('request');
 var convert = require('xml-js');
 
 router.get('/:searchParam', function(req, res) {
-    console.log('in the bgg route', req.params.searchParam);
+    console.log('in the title search route', req.params.searchParam);
     let searchParam = req.params.searchParam;
 
     pool.connect( function(err, client, done) {

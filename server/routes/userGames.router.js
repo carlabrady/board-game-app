@@ -29,4 +29,31 @@ router.get('/:searchParam', function(req, res) {
     })//END pool connect
 });
 
+router.post('/', function(req, res) {
+    console.log('in the userGames route', req.body);
+    let userId = req.body.users_id;    
+    let gameId = req.body.id;
+    let query = "INSERT INTO users_games (users_id, games_id, owned, wants) VALUES ( $1, $2, true, false);"
+
+    pool.connect( function(err, client, done) {
+        if (err) {
+            console.log('Pool Connection Error');
+            done();
+            res.sendStatus(500);
+        }//END if err
+        else{
+            client.query(query, [userId, gameId], function (quErr, resObj){
+                done();
+                if(quErr){
+                    console.log('query error', quErr);
+                    res.sendStatus(500); 
+                }//END if quErr
+                else{
+                    res.sendStatus(200);
+                }//END else
+            });//END client.query
+         }//END else no err
+    })//END pool connect
+});
+
 module.exports = router;

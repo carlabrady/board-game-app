@@ -77,12 +77,13 @@
                     </md-card-title>
                     <img ng-src="{{info.image_url}}" class="md-card-image" layout-align="top" alt="Washed Out">
                     <md-card-content layout="column" layout-align="left">
-                        <p>Number of Players: {{info.min_players}} - {{info.max_players}}</p>
+                        <p ng-show="{{info.min_players}} != {{info.max_players}}">Number of Players: {{info.min_players}} to {{info.max_players}}</p>
+                        <p ng-show="{{info.min_players}} === {{info.max_players}}">Number of Players: {{info.min_players}}</p>                        
                         <p>Category: {{info.category}}</p>
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
                         <div flex-gt-sm="50">
-                            <md-checkbox ng-model="info.id" ng-checked={{info.owned}} aria-label="Checkbox 1">
+                            <md-checkbox ng-model="info.game_id" ng-checked={{info.owned}} ng-click="vm.updateUserCollection(info.id)" aria-label="Checkbox 1">
                                 In My Collection
                             </md-checkbox>
                             <md-checkbox ng-model="info.rank" ng-checked={{info.wants}} aria-label="Checkbox 2">
@@ -94,8 +95,5 @@
             </div>
         </md-content>
     </section>
-    <!-- <md-list>
-        <md-list-item ng-repeat="item in vm.shownItems">{{ item }}</md-list-item>
-    </md-list> -->
-    <md-collection-pagination collection="vm.games" paginated-collection="vm.shownItems" per-page="9"></md-collection-pagination>
+    <md-collection-pagination class="md-padding" collection="vm.games" paginated-collection="vm.shownItems" per-page="9"></md-collection-pagination>
 </div>

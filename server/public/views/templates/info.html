@@ -3,7 +3,7 @@
     <section>
         <md-content class="md-padding">
             <div layout="row" layout-wrap>
-                <md-card flex-xs flex="30" ng-repeat="info in ic.games" class="gameCard">
+                <md-card flex-xs flex="30" ng-repeat="info in vm.shownItems" class="gameCard">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{ info.names }}</span>
@@ -12,21 +12,23 @@
                     </md-card-title>
                     <img ng-src="{{info.image_url}}" class="md-card-image" layout-align="top" alt="Washed Out">
                     <md-card-content layout="column" layout-align="left">
-                        <p>Number of Players: {{info.min_players}} - {{info.max_players}}</p>
+                        <p ng-show="{{info.min_players}} !== {{info.max_players}}">Number of Players: {{info.min_players}} to {{info.max_players}}</p>
+                        <p ng-show="{{info.min_players}} === {{info.max_players}}">Number of Players: {{info.min_players}}</p>                        
                         <p>Category: {{info.category}}</p>
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
                         <div flex-gt-sm="50">
-                            <md-checkbox ng-model="ic.usersGame" ng-checked={{info.owned}} aria-label="Checkbox 1">
+                            <md-checkbox ng-model="info.id" ng-checked={{info.owned}} aria-label="Checkbox 1">
                                 In My Collection
                             </md-checkbox>
-                            <!-- <md-checkbox ng-model="usersGame" aria-label="Checkbox 1">
+                            <md-checkbox ng-model="info.rank" aria-label="Checkbox 2">
                                 Add to Wishlist
-                            </md-checkbox> -->
+                            </md-checkbox>
                         </div>
                     </md-card-actions>
                 </md-card>
             </div>
         </md-content>
     </section>
+    <md-collection-pagination class="md-padding" collection="vm.games" paginated-collection="vm.shownItems" per-page="9"></md-collection-pagination>    
 </div>
