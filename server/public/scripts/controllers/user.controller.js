@@ -3,7 +3,24 @@ myApp.controller('UserController', function($location, UserService) {
     var vm = this;
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
-    vm.players = ['1', '2', '3', '4', '5', '6', '7', '8']
+    vm.players = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    vm.items = ['Adventure', 'Fantasy', 'Fighting', 'Humor', 'Economic', 'Horror', 'Family', 'Dexterity', 'Party', 'Adult', 'Co-operative', 'Board', 'Card', 'Dice'];
+    vm.selected = [];
+
+    vm.toggle = function (item, list) {
+      var idx = list.indexOf(item);
+      if (idx > -1) {
+        list.splice(idx, 1);
+      }
+      else {
+        list.push(item);
+      }
+      console.log('Selected:', vm.selected);
+    };
+
+    vm.exists = function (item, list) {
+      return list.indexOf(item) > -1;
+    };
 
     vm.getGame = function (search) {
       console.log('make title search:', search);

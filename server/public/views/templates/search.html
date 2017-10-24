@@ -27,38 +27,20 @@
                 <button ng-click="vm.palyerSearch(vm.playerCount)">Search</button>
               </md-content>
             </md-tab>
-            <md-tab label="Genre">
+            <md-tab label="Genre and Mechanics">
               <md-content class="md-padding">
-                <h1 class="md-display-2">Genre</h1>
+                <h1 class="md-display-2">Genre and Mechanics</h1>
                 <!-- add functionality to search by genre -->
                 <md-card-actions layout="row" layout-align="center center">
-                        <div flex-gt-sm="50">
-                            <md-checkbox ng-model="adventure" aria-label="Checkbox 1">
-                                Adventure
-                            </md-checkbox>
-                            <md-checkbox ng-model="fantasy" aria-label="Checkbox 2">
-                                Fantasy
-                            </md-checkbox>
-                            <md-checkbox ng-model="economic" aria-label="Checkbox 3">
-                                Economic
-                            </md-checkbox>
-                            <md-checkbox ng-model="horror" aria-label="Checkbox 4">
-                                Horror
-                            </md-checkbox>
-                            <md-checkbox ng-model="family" aria-label="Checkbox 5">
-                                Family
-                            </md-checkbox>
-                            <md-checkbox ng-model="dexterity" aria-label="Checkbox 6">
-                                Dexterity
-                            </md-checkbox>
-                            <md-checkbox ng-model="party" aria-label="Checkbox 7">
-                                Party
-                            </md-checkbox>
-                            <md-checkbox ng-model="adult" aria-label="Checkbox 8">
-                                Adult
+                    <div layout="row" layout-wrap flex>
+                        <div flex-gt-sm="25" ng-repeat="item in vm.items">
+                            <md-checkbox ng-checked="vm.exists(item, vm.selected)" ng-click="vm.toggle(item, vm.selected)">
+                                {{ item }}
                             </md-checkbox>
                         </div>
-                    </md-card-actions>
+                    </div>
+                </md-card-actions>
+                <button ng-click="vm.searchGenre(checkboxes)">Search</a></button>                                    
               </md-content>
             </md-tab>
           </md-tabs>
