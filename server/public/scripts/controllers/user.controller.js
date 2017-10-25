@@ -11,11 +11,9 @@ myApp.controller('UserController', function($location, UserService) {
       var idx = list.indexOf(item);
       if (idx > -1) {
         list.splice(idx, 1);
-      }
-      else {
+      } else {
         list.push(item);
       }
-      console.log('Selected:', vm.selected);
     };
 
     vm.exists = function (item, list) {
@@ -47,16 +45,25 @@ myApp.controller('UserController', function($location, UserService) {
       console.log('userObject', UserService.userObject);
       for (var i = 0; i < vm.games.length; i++) {
         if (id === vm.games[i].id) {
+
           vm.games[i].users_id = UserService.userObject.id;
-          console.log(vm.games[i].users_id);
           gameInfo = vm.games[i];
-          console.log('update user collection in search:', gameInfo);
+
           UserService.updateUserCollection(gameInfo).then( function () {
             vm.games = UserService.userObject.games;
-          }).then( function() {
             vm.getGame(vm.gameIn);
           })
         }
       }
+    }
+
+    vm.searchGenre = function (search) {
+       console.log('searchGenre with search:', search);
+       
+       UserService.searchGenre(search).then (function () {
+         console.log('returned from service');
+         vm.games = UserService.userObject.games;
+         vm.getGame(vm.gameIn);         
+       })
     }
 });

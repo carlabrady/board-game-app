@@ -12,6 +12,7 @@ var registerRouter = require('./routes/register.router');
 var getSearch = require('./routes/getSearch.router');
 var countSearch = require('./routes/countSearch.router');
 var userGames = require('./routes/userGames.router');
+var genreSearch = require('./routes/genreSearch.router')
 
 var port = process.env.PORT || 5000;
 
@@ -35,6 +36,7 @@ app.use('/user', userRouter);
 app.use('/titleSearch', getSearch);
 app.use('/countSearch', countSearch);
 app.use('/userGames', userGames);
+app.use('/genreSearch', genreSearch)
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);

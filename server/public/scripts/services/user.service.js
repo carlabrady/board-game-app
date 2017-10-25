@@ -83,6 +83,19 @@ myApp.factory('UserService', function($http, $location){
             }).then( function( response ){
                 console.log( 'back from server call with:', response );       
             }); //end $http
-        }
+        },
+
+        searchGenre: function(search) {
+            console.log('search genre in service:', search);
+            return $http({
+                method: 'GET',
+                url: '/genreSearch/' + search,
+            }).then( function( response ){
+                console.log( 'back from server call with:', response );
+                // games=response.data;  
+                userObject.games = response.data;
+                console.log('user games return:', userObject.games);           
+            }); //end $http
+        }, // end getgame
     }
 });

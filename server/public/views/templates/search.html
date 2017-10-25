@@ -27,9 +27,9 @@
                 <button ng-click="vm.palyerSearch(vm.playerCount)">Search</button>
               </md-content>
             </md-tab>
-            <md-tab label="Genre and Mechanics">
+            <md-tab label="Genre/Mechanics">
               <md-content class="md-padding">
-                <h1 class="md-display-2">Genre and Mechanics</h1>
+                <h1 class="md-display-2">Genre/Mechanics</h1>
                 <!-- add functionality to search by genre -->
                 <md-card-actions layout="row" layout-align="center center">
                     <div layout="row" layout-wrap flex>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </md-card-actions>
-                <button ng-click="vm.searchGenre(checkboxes)">Search</a></button>                                    
+                <button ng-click="vm.searchGenre(vm.selected)">Search</a></button>                                    
               </md-content>
             </md-tab>
           </md-tabs>
