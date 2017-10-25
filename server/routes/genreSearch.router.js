@@ -4,11 +4,22 @@ var pool = require('../modules/pool');
 
 var request = require('request');
 
-router.get('/:searchParam', function(req, res) {
-    console.log('in the searchGenre route', req.param.searchParam);
-    var searchParam = req.params.searchParam;
-    console.log('in the searchGenre route', searchParam);
-    var genreQuery = "SELECT * FROM games FULL OUTER JOIN users_games ON games.id=users_games.games_id WHERE games.mechanic SIMILAR TO ($1) OR games.category SIMILAR TO ($1);"
+router.post('/', function(req, res) {
+    var genreArr = req.body.list
+    console.log('in the searchGenre route', genreArr);
+    var genreQuery = "SELECT * FROM games FULL OUTER JOIN users_games ON games.id=users_games.games_id WHERE"
+    
+    for (var i = 0; i < genreArr.length; i++) {
+        if (i !== genreArr.length - 1) {
+            console.log('iterate');
+            var subStr = " games.category SIMILAR TO '%" + genreArr[i] + "%' AND";
+            genreQuery = genreQuery + subStr;
+        } else {
+            var subStr = " games.category SIMILAR TO '%" + genreArr[i] + "%';";
+            genreQuery = genreQuery + subStr;
+            console.log('checking last value', genreQuery);
+        };       
+    };
     
     pool.connect( function(err, client, done) {
         if (err) {
@@ -17,7 +28,7 @@ router.get('/:searchParam', function(req, res) {
             res.sendStatus(500);
         }//END if err
         else{
-            client.query(genreQuery,['%' + searchParam + '%'], function (quErr, resObj){
+            client.query(genreQuery, function (quErr, resObj){
                 done();
                 if(quErr){
                     console.log('query error', quErr);

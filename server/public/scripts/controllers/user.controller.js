@@ -4,7 +4,7 @@ myApp.controller('UserController', function($location, UserService) {
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
     vm.players = ['1', '2', '3', '4', '5', '6', '7', '8'];
-    vm.items = ['Adventure', 'Fantasy', 'Fighting', 'Humor', 'Economic', 'Horror', 'Family', 'Dexterity', 'Party', 'Adult', 'Co-operative', 'Board', 'Card', 'Dice'];
+    vm.items = ['Action', 'Adult', 'Adventure', 'Bluffing', 'Building', 'Card', 'Children', 'Collectible', 'Dice', 'Economic', 'Exploration', 'Fantasy', 'Farming', 'Fighting', 'Horror', 'Humor', 'Medieval', 'Novel-based', 'Party', 'Political', 'Religous', 'Science Fiction', 'Territory'];
     vm.selected = [];
 
     vm.toggle = function (item, list) {
@@ -34,12 +34,7 @@ myApp.controller('UserController', function($location, UserService) {
       })
     };
 
-    vm.genreSearch = function (types) {
-      console.log('make genre search:', types);
-      UserService.countSearch(types).then( function () {
-        vm.games = UserService.userObject.games;
-      })
-    };
+  
 
     vm.updateUserCollection = function (id) {
       console.log('userObject', UserService.userObject);
@@ -57,13 +52,16 @@ myApp.controller('UserController', function($location, UserService) {
       }
     }
 
-    vm.searchGenre = function (search) {
-       console.log('searchGenre with search:', search);
-       
-       UserService.searchGenre(search).then (function () {
+    vm.searchGenre = function () {
+       console.log('searchGenre');
+       var typesObj = {
+         list: vm.selected
+       };
+       console.log('in genre controller', typesObj);
+       UserService.searchGenre(typesObj).then (function () {
          console.log('returned from service');
          vm.games = UserService.userObject.games;
-         vm.getGame(vm.gameIn);         
+        //  vm.getGame(vm.gameIn);         
        })
     }
 });

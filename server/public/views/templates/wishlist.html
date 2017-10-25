@@ -1,0 +1,34 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+    <section>
+        <md-content class="md-padding">
+            <div layout="row" layout-wrap>
+                <md-card flex-xs flex="30" ng-repeat="info in vm.shownItems" class="gameCard">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{ info.names }}</span>
+                            <span class="md-subhead">Rating: {{info.avg_rating}}/10</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <img ng-src="{{info.image_url}}" class="md-card-image" layout-align="top" alt="Washed Out">
+                    <md-card-content layout="column" layout-align="left">
+                        <p ng-show="{{info.min_players}} !== {{info.max_players}}">Number of Players: {{info.min_players}} to {{info.max_players}}</p>
+                        <p ng-show="{{info.min_players}} === {{info.max_players}}">Number of Players: {{info.min_players}}</p>                        
+                        <p>Category: {{info.category}}</p>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <div flex-gt-sm="50">
+                            <md-checkbox ng-model="$indexUser" ng-checked={{info.owned}} ng-click="vm.updateUserCollection(info.games_id)" aria-label="Checkbox 1">
+                                In My Collection
+                            </md-checkbox>
+                            <md-checkbox ng-model="$indexSecondaryUser" aria-label="Checkbox 2">
+                                Add to Wishlist
+                            </md-checkbox>
+                        </div>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>
+    </section>
+    <md-collection-pagination class="md-padding" collection="vm.games" paginated-collection="vm.shownItems" per-page="9"></md-collection-pagination>    
+</div>

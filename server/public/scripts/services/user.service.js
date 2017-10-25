@@ -3,6 +3,7 @@ myApp.factory('UserService', function($http, $location){
    
     var userObject = {};
     userObject.games = {};
+
     return {
         userObject: userObject,
     
@@ -88,8 +89,9 @@ myApp.factory('UserService', function($http, $location){
         searchGenre: function(search) {
             console.log('search genre in service:', search);
             return $http({
-                method: 'GET',
-                url: '/genreSearch/' + search,
+                method: 'POST',
+                url: '/genreSearch',
+                data: search
             }).then( function( response ){
                 console.log( 'back from server call with:', response );
                 // games=response.data;  
