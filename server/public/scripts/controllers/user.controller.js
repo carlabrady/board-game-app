@@ -24,13 +24,15 @@ myApp.controller('UserController', function($location, UserService) {
       console.log('make title search:', search);
       UserService.getGame(search).then( function () {       
         vm.games = UserService.userObject.games;
+        setRating(vm.games);
       });
     };
 
-    vm.palyerSearch = function (count) {
+    vm.playerSearch = function (count) {
       console.log('make count search:', count);
       UserService.countSearch(count).then( function () {
         vm.games = UserService.userObject.games;
+        setRating(vm.games);        
       })
     };
 
@@ -61,7 +63,17 @@ myApp.controller('UserController', function($location, UserService) {
        UserService.searchGenre(typesObj).then (function () {
          console.log('returned from service');
          vm.games = UserService.userObject.games;
+         setRating(vm.games);
+         
         //  vm.getGame(vm.gameIn);         
        })
+    }
+
+    setRating = function (avg) {
+      for (var i = 0; i < avg.length; i++) {
+        var game = avg[i];
+        avg[i].avg_rating = parseInt(parseFloat(game.avg_rating) * 10);
+      }
+      return avg;
     }
 });

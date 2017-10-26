@@ -8,6 +8,7 @@ myApp.controller('InfoController', function(UserService) {
       console.log('get users collection');
       UserService.userGames(id).then( function () {
         vm.games = UserService.userObject.games;
+        setRating(vm.games);
       })
     };
 
@@ -26,6 +27,14 @@ myApp.controller('InfoController', function(UserService) {
           })
         }
       }
+    }
+
+    setRating = function (avg) {
+      for (var i = 0; i < avg.length; i++) {
+        var game = avg[i];
+        avg[i].avg_rating = parseInt(parseFloat(game.avg_rating) * 10);
+      }
+      return avg;
     }
 
     vm.userGames(vm.userObject.id);

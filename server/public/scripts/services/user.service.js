@@ -74,12 +74,36 @@ myApp.factory('UserService', function($http, $location){
             }); //end $http
         }, // end getgame
 
+        wishList: function(id) {
+            console.log('user collection call with id:', id);
+            return $http({
+                method: 'GET',
+                url: '/userGames/wishlist/' + id,
+            }).then( function( response ){
+                console.log( 'back from server call with:', response );
+                // games=response.data;  
+                userObject.games = response.data;
+                console.log('user games return:', userObject.games);           
+            }); //end $http
+        }, // end getgame
+
 
         updateUserCollection: function(game) {
             console.log('update user collection with info:', game);
             return $http({
                 method: 'POST',
                 url: '/userGames',
+                data: game,
+            }).then( function( response ){
+                console.log( 'back from server call with:', response );       
+            }); //end $http
+        },
+
+        updateUserWants: function(game) {
+            console.log('update user collection with info:', game);
+            return $http({
+                method: 'POST',
+                url: '/userGames/wish',
                 data: game,
             }).then( function( response ){
                 console.log( 'back from server call with:', response );       
