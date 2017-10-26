@@ -52,7 +52,23 @@ myApp.controller('UserController', function($location, UserService) {
           })
         }
       }
-    }
+    };
+
+    vm.updateUserWants = function (id) {
+      console.log('userObject', UserService.userObject);
+      for (var i = 0; i < vm.games.length; i++) {
+        if (id === vm.games[i].id) {
+          vm.games[i].users_id = UserService.userObject.id;
+          console.log(vm.games[i].users_id);
+          gameInfo = vm.games[i];
+          console.log('update user wants:', gameInfo);
+          UserService.updateUserWants(gameInfo).then( function () {
+            vm.games = UserService.userObject.games;
+            vm.getGame(vm.gameIn);
+          })
+        }
+      }
+  };
 
     vm.searchGenre = function () {
        console.log('searchGenre');

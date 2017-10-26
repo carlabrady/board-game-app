@@ -81,7 +81,7 @@ router.post('/wish', function(req, res) {
             });//END client.query
         } else {
             console.log('Not already in db');
-            let query = "INSERT INTO users_games (users_id, games_id, owned, wants) VALUES ( $1, $2, true, false);";
+            let query = "INSERT INTO users_games (users_id, games_id, owned, wants) VALUES ( $1, $2, false, true);";
             client.query(query, [userId, gameId], function (quErr, resObj){
                 done();
                 if (quErr) {
