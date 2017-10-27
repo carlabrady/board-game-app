@@ -4,16 +4,24 @@
             <md-card>
                 <md-card-title>
                     <md-card-title-text layout-align= "center center">
-                        <h1 class="lead">Login</h1>
+                        <h1 class="md-display-1">Login</h1>
                         <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
                         <form ng-submit="lc.login()">
-                            <div class="md-padding">
-                                <label for="username">Username:</label>
-                                <input type="text" ng-model="lc.user.username" />
+                            <div>
+                                <md-input-container>
+                                    <label>Username</label>
+                                    <input type="text" ng-model="lc.user.username">
+                                </md-input-container>
+                                <!-- <label for="username">Username:</label>
+                                <input type="text" ng-model="lc.user.username" /> -->
                             </div>
-                            <div class="md-padding">
-                                <label for="password">Password:</label>
-                                <input type="password" ng-model="lc.user.password" />
+                            <div>
+                                <md-input-container>
+                                    <label>Password</label>
+                                    <input type="password" ng-model="lc.user.password">
+                                </md-input-container>
+                                <!-- <label for="password">Password:</label>
+                                <input type="password" ng-model="lc.user.password" /> -->
                             </div>
                             <div class="md-padding">
                                 <md-button type="submit" name="submit" value="Log In">Login</md-button>

@@ -1,18 +1,19 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div>
-    <md-content class="md-padding">
+<div>  
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="100" layout="column">
         <md-card layout-padding="lg">
           <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Title">
               <md-content class="md-padding" layout="column" layout-align="center center">
                 <h1 class="md-display-1">Search by Title</h1>
                 <div layout="row" class="md-padding">
-                    <!-- <md-input-container>
+                    <md-input-container>
                         <label>Title</label>
                         <input ng-model="vm.gameIn">
-                    </md-input-container> -->
+                    </md-input-container>
                         
-                    <input type='text' placeholder="game search" ng-model="vm.gameIn">
+                    <!-- <input type='text' placeholder="game search" ng-model="vm.gameIn"> -->
                     <md-button ng-click="vm.getGame(vm.gameIn)">Search</md-button>                        
                 </div>
               </md-content>
@@ -37,7 +38,7 @@
                 <md-card-actions layout="row" layout-align="center center">
                     <div layout="row" layout-wrap flex>
                         <div flex-sm="25" ng-repeat="item in vm.items" layout-padding>
-                            <md-checkbox ng-checked="vm.exists(item, vm.selected)" ng-click="vm.toggle(item, vm.selected)">
+                            <md-checkbox class="pink" ng-checked="vm.exists(item, vm.selected)" ng-click="vm.toggle(item, vm.selected)">
                                 {{ item }}
                             </md-checkbox>
                         </div>
@@ -49,8 +50,9 @@
             </md-tab>
           </md-tabs>
         </md-card>
+        </div>
     </md-content>
-    </div>
+</div>
     <section>
         <div ng-if="vm.games.length === 0" class="md-padding" layout-align="center center"> 
             <h1>No results, please try again!</h1>

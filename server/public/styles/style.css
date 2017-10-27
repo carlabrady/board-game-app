@@ -3,6 +3,8 @@ body, html {
     font-family: sans-serif;
     font-size: 14px;
   }
+
+
   
   /* .instructions .container h1 {
     font-size: 32px;
@@ -34,7 +36,7 @@ body, html {
   }
   
   #container {
-    margin-top: 10px;
+    margin-top: 15px;
   }
   
   .container p{
@@ -102,14 +104,23 @@ body, html {
 
   md-checkbox.md-checked.pink .md-icon {
     background-color: #FA4782;
-   }
+  }
+
+  input {
+    border-bottom-color: black;
+  }
+
+  .md-select-menu-container.md-active {
+    background-color: white;
+    opacity: 10;
+  }
 
   .star-ratings-css {
     unicode-bidi: bidi-override;
     color: #c5c5c5;
     font-size: 25px;
     height: 25px;
-    width: 100px;
+    width: 125px;
     margin: 0 auto;
     position: relative;
     padding: 0;
