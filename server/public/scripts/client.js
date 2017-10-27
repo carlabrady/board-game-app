@@ -1,7 +1,8 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'mdCollectionPagination']);
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function($mdThemingProvider, $routeProvider, $locationProvider) {
+  $mdThemingProvider.disableTheming();
   $locationProvider.hashPrefix('');
   console.log('myApp -- config')
   $routeProvider

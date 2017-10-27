@@ -1,10 +1,21 @@
-<div class="navbar">
-    <md-nav-bar aria-label="mainNav">
-      <ul>
-        <li><a href="#/search">Search</a></li>
-        <li><a href="#/info">My Games</a></li>
-        <li><a href="#/wishlist">Wishlist</a></li>     
-        <li align="end"><a ng-click="vm.userService.logout()">Log Out</a></li>
-      </ul>
-    </md-nav-bar>
+<div ng-controller="NavBarController as nc" ng-cloak>
+  <div class="navbar">
+    <md-content id="nav" class="md-padding">
+      <md-nav-bar md-selected-nav-item="nc.currentNavItem" nav-bar-aria-label="mainNav">
+          <md-nav-item md-nav-href="#/search" name="/search" value="search">
+            Search
+          </md-nav-item>
+          <md-nav-item md-nav-href="#/info" name="/info" value="info">
+            My Games
+          </md-nav-item>
+          <md-nav-item md-nav-href="#/wishlist" name="/wishlist" value="wishlist">
+            Wishlist
+          </md-nav-item> 
+          <span flex></span>   
+          <md-nav-item md-nav-href="#/" ng-click="nc.userService.logout()" name="/logout" value="logout">
+            Log Out
+          </md-nav-item>
+      </md-nav-bar>
+    </md-content>
   </div>
+</div>
