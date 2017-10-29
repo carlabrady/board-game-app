@@ -4,7 +4,6 @@ body, html {
     font-size: 14px;
   }
 
-
   
   /* .instructions .container h1 {
     font-size: 32px;
@@ -26,9 +25,7 @@ body, html {
   .instructions h1{
     text-align: center;
     font-size: 54px;
-    /* background-color: #333333;
-    color: #DDDDDD; */
-    /* padding: 10px; */
+    padding-bottom: 10px;
   }
   
   #entryForm {
@@ -65,7 +62,7 @@ body, html {
 
   #nav {
     padding: 0;    
-    background: linear-gradient(to right, #E78DAB, #E46891, #E78DAB);    
+    background: linear-gradient(to right, #FF9BBC, #FA4782, #FF9BBC);    
   }
 
   .home {
