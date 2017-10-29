@@ -64,8 +64,8 @@ body, html {
   }
 
   #nav {
-    padding: 0;
-    background-color: #FA4782;    
+    padding: 0;    
+    background: linear-gradient(to right, #E78DAB, #E46891, #E78DAB);    
   }
 
   .home {

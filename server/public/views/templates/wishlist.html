@@ -7,11 +7,14 @@
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{ info.names }}</span>
-                            <div class="star-ratings-css">
-                                <div class="star-ratings-css-top" style="width: {{info.avg_rating}}%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                                <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            <div  layout="row">
+                                <div class="star-ratings-css">
+                                    <div class="star-ratings-css-top" style="width: {{info.avg_rating}}%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                </div>
+                                <span flex></span>
+                                <span class="md-subhead">Rating: {{info.avg_rating}}/100</span>                                
                             </div>
-                            <span class="md-subhead">Rating: {{info.avg_rating}}/100</span>
                         </md-card-title-text>
                     </md-card-title>
                     <img ng-src="{{info.image_url}}" class="md-card-image" layout-align="top" alt="Washed Out">
@@ -21,7 +24,7 @@
                         <p>Category: {{info.category}}</p>
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <div flex-gt-sm="50">
+                        <div layout="row">
                             <md-checkbox class="pink" ng-model="$indexWish" ng-checked={{info.owned}} ng-click="vm.updateUserCollection(info.games_id)" aria-label="Checkbox 1">
                                 In My Collection
                             </md-checkbox>

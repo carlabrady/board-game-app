@@ -23,7 +23,7 @@ myApp.controller('WishlistController', function(UserService) {
             UserService.updateUserWants(gameInfo).then( function () {
               vm.games = UserService.userObject.games;
             }).then( function() {
-              vm.userGames(vm.userObject.id);
+              vm.wishList(vm.userObject.id);
             })
           }
         }

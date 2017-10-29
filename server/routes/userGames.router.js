@@ -15,7 +15,7 @@ router.get('/wishlist/:searchParam', function(req, res) {
             res.sendStatus(500);
         }//END if err
         else{
-            client.query("SELECT * FROM games JOIN users_games ON games.id=users_games.games_id JOIN users ON users_games.users_id=users.id WHERE users_games.wants = true;", function (quErr, resObj){
+            client.query("SELECT * FROM games JOIN users_games ON games.id=users_games.games_id JOIN users ON users_games.users_id=users.id WHERE users_games.wants = true AND users_id=$1;", [searchParam], function (quErr, resObj){
                 done();
                 if(quErr){
                     console.log('query error', quErr);
@@ -40,7 +40,7 @@ router.get('/:searchParam', function(req, res) {
             res.sendStatus(500);
         }//END if err
         else{
-            client.query("SELECT * FROM games JOIN users_games ON games.id=users_games.games_id JOIN users ON users_games.users_id=users.id WHERE users_games.owned = true;", function (quErr, resObj){
+            client.query("SELECT * FROM games JOIN users_games ON games.id=users_games.games_id JOIN users ON users_games.users_id=users.id WHERE users_games.owned = true AND users_id=$1;", [searchParam], function (quErr, resObj){
                 done();
                 if(quErr){
                     console.log('query error', quErr);
